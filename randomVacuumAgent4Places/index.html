@@ -1,3 +1,5 @@
+<!--
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,39 +26,12 @@
 
     <div class="row">
       <div class="col-sm-6 col-md-offset-3" id="content">
-        <h1>Intelligent Agents</h1>
-        <h3>Table of contents</h3>
-        <ul class="content-table">
-          <li><a href="#vacuum-cleaner-problem">Vacuum cleaner problem</a></li>
-          <li><a href="#simple-cleaning-robot">Simple cleaning robot</a></li>
-          <li><a href="#rules-to-follow">Rules for the agent to follow</a></li>
-          <li><a href="#performance-measures">Performance measures</a></li>
-        </ul>
+        <h1 style="text-align: center;">Randon Vacuum Agent</h1>
+        <h3 style="text-align: center;">4 lugares</h3>
 
-        <h2 id="vacuum-cleaner-problem">Vacuum cleaner problem</h2>
+        <hr/>
 
-        <p>
-          Choose an action for the robot. Click on a box to make it dirty.
-        </p>
-
-        <div id="reader-controlled-diagram">
-          <div class="buttons" style="position:relative"></div>
-          <svg width="600" height="300"></svg>
-        </div>
-
-        <h2 id="simple-cleaning-robot">Simple cleaning robot</h2>
-
-        <div id="agent-controlled-diagram">
-
-          <p>
-            The robot will choose its own actions based on simple rules. Click on a box to make it dirty.
-          </p>
-
-          <svg width="600" height="300"></svg>
-
-        </div>
-
-        <h2 id="rules-to-follow">Rules for the agent to follow</h2>
+        <h2 id="rules-to-follow">Regras</h2>
 
         <div id="table-controlled-diagram">
 
@@ -120,26 +95,73 @@
             works well, but in more complex examples it won't be as
             obvious what set of rules to use. How would we find the
             rules?
-          </p>
+          </p> 
 
-          <h2 id="performance-measures">Performance measures</h2>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./cleaningRobot.js"></script>
+    <script type="text/javascript" src="./c_cleaningRobot.js"></script>
+  </body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>2 Intelligent Agents</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        .floor:hover { cursor: pointer; }
+        .agent-actions { margin-left: auto; margin-right: auto; border-collapse: collapse; }
+        .agent-actions th { padding: 0.5ex; border: 1px solid hsl(240,10%,90%); background: hsl(240,10%,85%); text-align: center; }
+        .agent-actions td { padding: 0.25ex; border: 1px solid hsl(240,20%,80%); text-align: center; }
+
+        .robot { transition: transform 2.0s; }
+        .floor { fill: white; }
+        .floor.clean { fill: hsl(240,10%,90%); transition: fill 2.0s; }
+        .floor.dirty { fill: hsl(0,50%,50%); transition: fill 0.1s; }
+        .floor.wet { fill: rgb(0, 139, 253); transition: fill 0.1s; }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-offset-3" id="content">
+
+        <h2 id="simple-cleaning-robot">Random Vacuum Agent com dois eixos</h2>
+
+        <div id="agent-controlled-diagram">
 
           <p>
-            We can choose a metric that evaluates how well the agent
-            performs on the given problem.
+            O robô decidirá as ações de acordo com o ambiente. Clique nos campos para molhá-lo, sujá-lo ou talvez, limpá-lo.
           </p>
 
-          TODO: dirty/clean should be controlled automatically,
-          reproducibly (seeded RNG), and then display a line chart
-          with the performance measure
+          <i>Enquanto o robot não encontrar uma sujeira seus movimentos sempre serão em sentido horário.</i>
 
-          <h3>Evaluating multiple agents</h3>
+          <h4>Melhorias:</h4>
+          <ul>
+            <li>Movimentos UP e DOWN</li>
+            <li>Estado <i>"molhado"</i> adicionado</li>
+            <li>Ao clicar em um campo, ele se torna molhado, ao clicar novamente, ele se torna sujo</li>
+            <li>Passe de mágica: Existe uma pequena probabilidade de que um campo sujo se limpe sozinho!</li>
+            <li>Ao molhar um campo, existe uma probabilidade de que outro se molhe.</li>
+            <li><i>Tradução para o Português</i></li>
+          </ul>
 
-          TODO: many different agents on the same data sequence
+          <h4>Legenda:</h4>
+          <ul>
+            <li>Azul : Molhado</li>
+            <li>Vermelho : Sujo</li>
+          </ul>
 
-          <h3>Evaluating many data sets</h3>
+          <svg width="750" height="900"></svg>
 
-          TODO: one agent on many different data sequences (avoid overfitting)
         </div>
       </div>
     </div>
